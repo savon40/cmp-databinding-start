@@ -1,0 +1,23 @@
+<div class="container">
+  <!-- $event is data being manipulated in serverCreated -->
+  <!-- serverCreated and blueprintCreated are events that happen in app-cockpit -->
+  <app-cockpit 
+    (serverCreated)="onServerAdded($event)"
+    (blueprintCreated)="onServerAdded($event)"
+  ></app-cockpit>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- can put ngFor on component calls if the components represent individual records -->
+      <app-server-element 
+        *ngFor="let serverElement of serverElements"
+        [srvElement] ="serverElement"
+      ></app-server-element>
+      <!-- 
+        cant bind to element becuase it isnt a property of app-server-element
+        by default all properties of components are only accessible by that component
+        you have to add something to allow parent components to access property of child component
+      -->
+    </div>
+  </div>
+</div>
